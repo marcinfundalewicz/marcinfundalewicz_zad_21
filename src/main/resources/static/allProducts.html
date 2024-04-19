@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dodawanie użytkownika</title>
+</head>
+<body>
+<h1>Dodaj produkt</h1>
+<form action="/add" method="post">
+    <input type="text" name="name" placeholder="Nazwa">
+    <input type="number" name="price" placeholder="Cena">
+    <select id="category" name="category">
+        <option disabled selected>Wybierz kategorię</option>
+        <option value="art.spożywcze">Art.spożywcze</option>
+        <option value="art.gosp.domowego">Art.gosp.domowego</option>
+        <option value="Inne">Inne</option>
+        </select>
+    <input type="submit" value="Dodaj produkt">
+</form>
+</body>
+</html>
