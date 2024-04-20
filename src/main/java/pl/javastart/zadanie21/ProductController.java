@@ -15,61 +15,23 @@ public class ProductController {
 
     @RequestMapping("/products")
     @ResponseBody
-    String showProducts() {
+    String showProducts(@RequestParam(required = false) Category category) {
         int finalPrice = 0;
         String result = "";
         for (Product product : productRepository.getProductList()) {
-            result += product + "</br>";
-            finalPrice += product.price;
-        }
-        return result + "</br>" + "Suma zakupów wynosi" + "</br>" + finalPrice + "zł";
-    }
-
-    @RequestMapping("/filterOther")
-    @ResponseBody
-    String showFilteredProducts() {
-        int finalPrice = 0;
-        String result = "";
-        for (Product product : productRepository.getProductList()) {
-            if (product.category.equals("inne")) {
+            if (category == null || product.getCategory() == category) {
                 result += product + "</br>";
-                finalPrice += product.price;
+                finalPrice += product.getPrice();
             }
         }
         return result + "</br>" + "Suma zakupów wynosi" + "</br>" + finalPrice + "zł";
-    }
-    @RequestMapping("/filterAgd")
-    @ResponseBody
-    String showFilteredProductsByAgd() {
-        int finalPrice = 0;
-        String result = "";
-        for (Product product : productRepository.getProductList()) {
-            if (product.category.equals("art.gosp.domowego")) {
-                result += product + "</br>";
-                finalPrice += product.price;
-            }
-        }
-        return result + "</br>" + "Suma zakupów wynosi" + "</br>" + finalPrice + "zł";
-    }
-    @RequestMapping("/filterFood")
-    @ResponseBody
-    String showFilteredProductsByFood() {
-        int finalPrice = 0;
-        String result = "";
-        for (Product product : productRepository.getProductList()) {
-            if (product.category.equals("art.spożywcze")) {
-                result += product + "</br>";
-                finalPrice += product.price;
-            }
-        }
-        return result + "</br>" + "Suma zakupów wynosi" + "</br>"+ finalPrice + "zł";
     }
 
     @RequestMapping("/add")
     String addUser(@RequestParam(value = "name", required = false) String name,
                    @RequestParam(value = "price", required = false) Integer price,
-                   @RequestParam(value = "category", required = false) String category) {
-        if (!name.isEmpty() && price != null && !category.isEmpty()) {
+                   @RequestParam(value = "category", required = false) Category category) {
+        if (!name.isEmpty() && price != null && category != null) {
             productRepository.addProduct(name, price, category);
             return "redirect:/success.html";
         } else {

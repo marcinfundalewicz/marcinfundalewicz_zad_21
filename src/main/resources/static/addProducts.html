@@ -9,14 +9,14 @@
 </head>
 <body>
 <h1>Dodaj produkt</h1>
-<form action="/add" method="post">
+<form action="/add" method="get">
     <input type="text" name="name" placeholder="Nazwa">
     <input type="number" name="price" placeholder="Cena">
     <select id="category" name="category">
         <option disabled selected>Wybierz kategorię</option>
-        <option value="art.spożywcze">Art.spożywcze</option>
-        <option value="art.gosp.domowego">Art.gosp.domowego</option>
-        <option value="Inne">Inne</option>
+        <option value="ART_SPOZYWCZE">Art.spożywcze</option>
+        <option value="ART_GOSP_DOMOWEGO">Art.gosp.domowego</option>
+        <option value="INNE">Inne</option>
         </select>
     <input type="submit" value="Dodaj produkt">
 </form>
